@@ -1,13 +1,8 @@
 package ngrams;
 
-import java.sql.Time;
-import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Map;
-
-import static ngrams.TimeSeries.MAX_YEAR;
-import static ngrams.TimeSeries.MIN_YEAR;
 import edu.princeton.cs.algs4.In;
 
 /**
@@ -63,7 +58,10 @@ public class NGramMap {
      * returns an empty TimeSeries.
      */
     public TimeSeries countHistory(String word, int startYear, int endYear) {
-        return new TimeSeries(wordsTimeSeries.get(word), startYear, endYear);
+        if (!wordsTimeSeries.containsKey(word)) {
+            return new TimeSeries();
+        }
+        return new TimeSeries(countHistory(word), startYear, endYear);
     }
 
     /**
@@ -73,6 +71,9 @@ public class NGramMap {
      * is not in the data files, returns an empty TimeSeries.
      */
     public TimeSeries countHistory(String word) {
+        if (!wordsTimeSeries.containsKey(word)) {
+            return new TimeSeries();
+        }
         return wordsTimeSeries.get(word);
     }
 
@@ -126,6 +127,9 @@ public class NGramMap {
      */
     public TimeSeries summedWeightHistory(Collection<String> words,
                                           int startYear, int endYear) {
+        if (words.size() == 0) {
+            return new TimeSeries();
+        }
         return new TimeSeries(summedWeightHistory(words), startYear, endYear);
     }
 
@@ -139,9 +143,11 @@ public class NGramMap {
      */
     public TimeSeries summedWeightHistory(Collection<String> words) {
         TimeSeries ts = new TimeSeries();
-        for (String word : words) {
-            if (wordsTimeSeries.containsKey(word)) {
-                ts = ts.plus(weightHistory(word));
+        if (words.size() != 0) {
+            for (String word : words) {
+                if (wordsTimeSeries.containsKey(word)) {
+                    ts = ts.plus(weightHistory(word));
+                }
             }
         }
         return ts;

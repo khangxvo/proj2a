@@ -64,4 +64,11 @@ public class TimeSeriesTest {
             assertThat(division.data().get(i)).isWithin(1E-10).of(expectedDivision.get(i));
         }
     }
+
+    @Test
+    public void testEmptyTS() {
+        TimeSeries ts = new TimeSeries();
+
+        System.out.println(ts.toString());
+    }
 } 

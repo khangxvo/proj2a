@@ -1,12 +1,6 @@
 package ngrams;
 
-import edu.princeton.cs.algs4.SET;
-import org.checkerframework.checker.units.qual.A;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * An object for mapping a year number (e.g. 1996) to numerical data. Provides
@@ -32,9 +26,14 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public TimeSeries(TimeSeries ts, int startYear, int endYear) {
         super();
-        for (int start = startYear; start <= endYear; start++) {
-            this.put(start, ts.get(start));
+        //        for (int start = startYear; start <= endYear; start++) {
+        //            this.put(start, ts.get(start));
+        //        }
+        NavigableMap<Integer, Double> newTS = ts.subMap(startYear, true, endYear, true);
+        for (Integer i : newTS.keySet()) {
+            this.put(i, ts.get(i));
         }
+
     }
 
     /**

@@ -1,5 +1,4 @@
 
-/*
 import browser.NgordnetQuery;
 import main.HistoryTextHandler;
 import ngrams.NGramMap;
@@ -8,11 +7,9 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static com.google.common.truth.Truth.assertThat;
- */
 
 // uncomment this test whenever you are ready!
 public class HistoryTextHandlerTest {
-    /*
     @Test
     public void testHandle() {
         NGramMap ngm = new NGramMap("./data/ngrams/very_short.csv", "./data/ngrams/total_counts.csv");
@@ -25,5 +22,4 @@ public class HistoryTextHandlerTest {
                 """;
         assertThat(actual).isEqualTo(expected);
     }
-    */
 }
